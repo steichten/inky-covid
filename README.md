@@ -11,6 +11,8 @@ This dashboard uses the [covidtracking.com](covidtracking.com/) API to get a giv
 This used python 3.7 and the [inky-phat libraries](https://github.com/pimoroni/inky-phat)
 
 ```
+curl https://get.pimoroni.com/inkyphat | bash
+sudo apt-get install libatlas-base-dev
 pip3 install -r requirements.txt
 ```
 

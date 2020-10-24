@@ -1,4 +1,5 @@
+numpy
 pandas
 matplotlib
-PIL
 argparse
+inky[rpi,fonts]

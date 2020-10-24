@@ -6,6 +6,7 @@ import argparse, io
 from datetime import datetime, timedelta
 from matplotlib import font_manager
 from inkyphat import RED, BLACK, text, set_image, set_rotation, show
+import inkyphat
 # Create the parser
 my_parser = argparse.ArgumentParser(description='inky-pHAT dashboard of daily COVID-19 positives')
 
@@ -15,9 +16,11 @@ my_parser.add_argument('--state',
                        type=str,
                        help='two-letter US state abbreviation')
 my_parser.add_argument('--flip',
-                       metavar='flip',
-                       type=str,
+                       dest='flip',
+                       action='store_true',
                        help='flip the display 180 degrees')
+my_parser.set_defaults(flip=False)
+my_parser.add_argument("--output", help="save plot as png")
 
 # Execute the parse_args() method
 args = my_parser.parse_args()
@@ -62,7 +65,7 @@ ax.autoscale_view()
 ymin, ymax = ax.get_ylim()
 
 font = ImageFont.truetype('Cantarell-Bold.ttf', 16)
-
+inkyphat.set_colour('red')
 with io.BytesIO() as f:
     fig.savefig(f, dpi=dpi, cmap="bwr", interpolation="none", origin="lower", pad_inches=0)
     f.seek(0)
@@ -84,3 +87,4 @@ with io.BytesIO() as f:
     text((0,75),'CASES',BLACK, font)
 
     show()
+
